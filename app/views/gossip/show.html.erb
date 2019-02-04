@@ -1,0 +1,3 @@
+<h1><%= @potin.title %></h1>
+<p><%= @potin.content %><br> la date de creation : <%= @potin.created_at%><br>
+  <%= link_to("la Page de l'auteur", "/gossip/#{@potin.id}/#{@potin.user_id}")%></p>
