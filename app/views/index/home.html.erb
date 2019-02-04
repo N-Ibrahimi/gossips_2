@@ -1,7 +1,12 @@
-<h1>The Gossip Project</h1>
-<h2>Bonjour ,visiteur</h2>
+<div class="container">
+
+<h1> Gossips Project with Ruby on Rails</h1>
+<br>
+<h2> Cher visiteut 😊 <br> bienvenu sur notre site de Gossips Project</h2>
+<br><br>
 
 <% @gossip.each do |list|%>
   <p><strong><%= User.find(list.user_id).first_name%></strong> : <%= list.title %><br><%= link_to("Page du gossip", "gossip/#{list.id}")%></p>
 
 <% end %>
+</div> 
