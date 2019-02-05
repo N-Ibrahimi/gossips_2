@@ -4,9 +4,12 @@
 <br>
 <h2> Cher visiteut 😊 <br> bienvenu sur notre site de Gossips Project</h2>
 <br><br>
-
-<% @gossip.each do |list|%>
-  <p><strong><%= User.find(list.user_id).first_name%></strong> : <%= list.title %><br><%= link_to("Page du gossip", "gossip/#{list.id}")%></p>
-
+<div class="card text-center" style="width: 18rem;">
+  <div class="card-body">
+  	<% @gossip.each do |list|%>
+    <h5 class="card-title"><%= User.find(list.user_id).first_name%></h5>
+    <p class="card-text"> <%= list.title %></p>
+    <a  class="btn btn-primary" href="<%= link_to("More description", "gossip/#{list.id}")%>" > </a>
 <% end %>
-</div> 
+  </div>
+</div>
