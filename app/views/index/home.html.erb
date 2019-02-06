@@ -2,14 +2,28 @@
 
 <h1> Gossips Project with Ruby on Rails</h1>
 <br>
-<h2> Cher visiteut 😊 <br> bienvenu sur notre site de Gossips Project</h2>
+<h2> Cher visiteur 😊 <br> bienvenu sur notre site de Gossips Project</h2>
 <br><br>
-<div class="card text-center" style="width: 18rem;">
-  <div class="card-body">
-  	<% @gossip.each do |list|%>
-    <h5 class="card-title"><%= User.find(list.user_id).first_name%></h5>
-    <p class="card-text"> <%= list.title %></p>
-    <a  class="btn btn-primary" href="<%= link_to("More description", "gossip/#{list.id}")%>" > </a>
-<% end %>
+
+
+<div class="card-group" display: flex>
+<div class="row">
+  <div class="col-la-8">
+<% @gossip.each do |list|%>
+
+ <div class="card border-warning mb-3" style="max-width: 18rem;" display: flex;>
+  <div class="card-header">
+   <h5> <%= list.user.first_name%> </h5>
   </div>
+<div class="card-body text-danger">
+   
+    <p class="card-text"><%= list.title %></p>
+    <%= link_to "Page du gossip", "gossip/#{list.id}", class:"btn btn-primary" %>
+  </div>
+</div>
+<br>
+<% end %>
+</div>
+</div>
+</div>
 </div>
