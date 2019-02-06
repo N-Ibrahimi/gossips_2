@@ -1,21 +1,35 @@
 <div class="container">
-
-     <h1>Hey apparemment tu as envoie de nous contacter 😉 </h1>
-      <p>Merci de rempir le formulaire et envoyer ton message</p>
-      <p>bien evidemment pour qu'on puisse te repondre, il nous faut ton adresse mail </p>
-      <br>
-
-    <div class="content" >
-    <form action="/" method="post">
-      First name:<br>
-      <input type="text" name="firstname"><br>
-      Last name:<br>
-      <input type="text" name="lastname"><br>
-      Email:<br>
-      <input type="text" name="email"><br>
-      Message:<br>
-      <textarea name="message" form="message" rows="10" cols="50">Enter text here...</textarea><br><br>
-      <input type="submit" value="Envoyer">
-    </form> 
+  <a class="btn btn-outline-success" href="/" role="button">Back</a>
+<br>
+<br>
+      <h3>Merci de rempir le formulaire et envoyer ton message</h3>
+      <p>bien evidemment pour qu'on puisse te repondre, il nous faut ton adresse mail  😉  </p>
+<form>
+  <div class="form">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <label for="inputname">First name</label>
+    <div class="col-sm-4">
+      <input type="text" class="First_name" placeholder="Nasim">
+    </div>
+    <div class="form2">
+    <label for="inputlastn">Last name</label>
+    <div class="col-sm-4">
+      <input type="text" class="last_name"placeholder="Ibrahimi">
+    </div>
   </div>
-</div>
+  <div class="form3">
+    <label for="inputmail" >Email</label>
+    <div class="col-sm-4">
+      <input type="text" class="email" placeholder="exemple@exemple.com">
+    </div>
+  </div>
+  <br>
+  <div class="from4">
+  <textarea  class="col-sm-6 name="message" form="message" rows="10" cols="50">Enter text here...</textarea><br><br>
+   </div>
+  <div class="form-group row">
+    <div class="col-sm-2">
+      <button type="submit" class="btn btn-primary">Envoyer</button>
+    </div>
+  </div>
+</form>
