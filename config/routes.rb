@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get 'gossips/show/:gossip_id', to: 'gossips#show'
   get 'gossips/show/:gossip_id/:user_id', to: 'gossips#author'
   get 'gossips/new'
-  get 'gossips/create'
+  post 'gossips/create', to: 'gossips#create'
   get 'gossips/edit'
   get 'gossips/update'
   get 'gossips/delete'
