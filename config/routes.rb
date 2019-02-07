@@ -1,10 +1,19 @@
 Rails.application.routes.draw do
-  
-  get '/gossip/:gossip_id/:user_id' ,to: 'author#display'
-  get '/gossip/:gossip_id', to: 'gossip#show'
-  root 'index#home'
+  #resources :gossips
+  get 'gossips/index'
+  get 'gossips/show/:gossip_id', to: 'gossips#show'
+  get 'gossips/show/:gossip_id/:user_id', to: 'gossips#author'
+  get 'gossips/new'
+  get 'gossips/create'
+  get 'gossips/edit'
+  get 'gossips/update'
+  get 'gossips/delete'
+  get 'gossips/destroy'
+  root 'gossips#index'
   get '/team', to: 'static_pages#team'
   get '/contact', to: 'static_pages#contact'
   get '/welcome/:first_name', to: 'welcome#show'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-end
+end 
+  
+
+

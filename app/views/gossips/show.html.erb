@@ -1,0 +1,5 @@
+<div class="container">
+<h2><%= @potin.title %></h2><br>
+<p><%= @potin.content %><br> la date de creation : <%= @potin.created_at%><br><br>
+<%= link_to "la Page de l'auteur", "/gossips/show/#{@potin.id}/#{@potin.user_id}", class:"btn btn-secondary active" %></p>
+</div>
