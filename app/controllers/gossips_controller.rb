@@ -17,18 +17,12 @@ class GossipsController < ApplicationController
   end
 
   def create
-    @new_user = User.create!(first_name:params[:first_name],last_name:params[:last_name])
-    @gossip = Gossip.create(title:params[:title], content:params[:content], user_id:"#{@new_user.user_id}")
-
-    @new_user.errors
-    @gossip.errors 
-    # if @gossip.save
-    #   puts "Ton gossip a bien été créé !"
-    #   redirect_to root_path
-    # else 
-    #   render :new
-    #   puts "Erreur!"
-    # end
+    @gossip = Gossip.new(title:params[:title], content:params[:content],user_id:"30")
+    if @gossip.save
+      redirect_to root_path, success: "Gossip successfully created !"
+    else
+      redirect_to new_gossip_path, danger: "#{@gossip.errors.full_messages.join(". ")}"
+    end
   end
 
   def edit
