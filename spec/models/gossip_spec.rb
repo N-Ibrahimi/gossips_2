@@ -2,26 +2,30 @@ require 'rails_helper'
 
 RSpec.describe Gossip, type: :model do
 
-  before(:each) do
-    @gossip = Gossip.create(title: 'random gossip', content: 'blablabla')
+	before(:each) do 
+		@gossip = FactoryBot.create(:gossip)  	
   end
-  context 'validation' do
-    describe 'content' do
-      it 'should be valid without content' do
-        good_gossip = Gossip.create(title: 'omg')
-        expect(good_gossip.errors.include?(:content)).to eq(false)
-      end
+
+  it "has a valid factory" do
+    expect(build(:gossip)).to be_valid
+  end
+
+  context "validation" do
+    it "is valid with valid attributes" do
+      expect(@gossip).to be_a(Gossip)
     end
+    
+    describe "#title" do
+      it { expect(@gossip).to validate_presence_of(:title) }
+      it {should validate_length_of(:title).is_at_least(3).is_at_most(14)}
+		end
+		describe "#content" do
+      it { expect(@gossip).to validate_presence_of(:content) }
+		end
   end
 
-  context "public instance methods" do
-
-    describe "#full_name" do
-
-      it "should return a string" do
-        puts @gossip.title.class
-        expect(@gossip.title).to be_a(String)
-      end
-    end
+  context "associations" do
+    it { expect(@gossip).to belong_to(:user) }
   end
+  
 end

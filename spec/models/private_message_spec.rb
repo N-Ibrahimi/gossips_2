@@ -2,15 +2,26 @@ require 'rails_helper'
 
 RSpec.describe PrivateMessage, type: :model do
 
-  before(:each) do
-    @pm = PrivateMessage.create(content: 'hellO_world')
+	before(:each) do 
+		@private_message = FactoryBot.create(:private_message)  	
   end
 
-  context 'public instance methods' do
-    describe 'pm' do
-      it 'should return a string' do
-        expect(@pm.content).to be_a(String)
-      end
-    end
+  it "has a valid factory" do
+    expect(build(:private_message)).to be_valid
   end
+
+  context "validation" do
+    it "is valid with valid attributes" do
+      expect(@private_message).to be_a(PrivateMessage)
+    end
+		describe "#content" do
+      it { expect(@private_message).to validate_presence_of(:content) }
+		end
+  end
+
+  context "associations" do
+    it { expect(@private_message).to belong_to(:recipient) }
+    it { expect(@private_message).to belong_to(:sender) }
+  end
+
 end

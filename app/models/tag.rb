@@ -1,4 +1,8 @@
 class Tag < ApplicationRecord
-  has_many :join_table_tag_gossips
-	has_many :gossips, through: :join_table_tag_gossips
+	validates :title, 
+		presence: true, 
+		uniqueness: true
+
+	has_many :tag_gossip_joins
+	has_many :gossips, through: :tag_gossip_joins
 end

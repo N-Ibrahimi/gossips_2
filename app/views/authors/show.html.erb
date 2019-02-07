@@ -1,0 +1,17 @@
+	<div class="row justify-content-center align-items-center my-row">
+		<div class="col-md-8 col-sm-10">
+
+			<div class="card" style="margin-bottom: 2vh">
+		        <div class="card-body">
+		            <h3 class="card-title"><%= @author.first_name %> <%= @author.last_name %></h3>
+		        	<h6 class="card-subtitle mb-2 text-muted"><%= @author.age %> years old <br> 
+		        		<%= City.find(@author.city_id).zip_code %> <%= City.find(@author.city_id).name %> </h6>
+		            <hr>
+		            <p class="card-text"> <%= @author.description %></p>
+		            <hr>
+		            <h6 class="card-subtitle mb-2 text-muted"><%= @author.email %> </h6>
+		        </div>
+		    </div>
+
+		 </div>
+	</div>

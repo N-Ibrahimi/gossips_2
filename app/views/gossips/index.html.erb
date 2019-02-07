@@ -26,3 +26,26 @@
     </div>
 </div>
 </div>
+
+
+
+<%= link_to "Create a new gossip!", new_gossip_path, :class => "btn btn-dark btn-lg btn-block", :role => "button", :style => "margin-bottom: 5vh" %>
+
+<% @gossips.each do |gossip| %>
+
+	<div class="card" style="margin-bottom: 2vh">
+		<div class="card-body">
+			<h4 class="card-title font-weight-bold playfair-relative"> <%= gossip.title.capitalize %> <span class="badge badge-info badgecustom"><%= Comment.where(gossip: gossip.id).count %> <span style="font-size: .8em">💬</span></span></h4>
+			<div class="row">
+				<div class="col">
+					<p class="card-text"> <%= User.find(gossip.user_id).first_name %></p>
+				</div>
+
+				<div class="col text-right">
+					<%= link_to "Read more about the gossip ##{gossip.id}", gossip_path(gossip.id), :class => "btn btn-outline-dark" %>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<% end %>

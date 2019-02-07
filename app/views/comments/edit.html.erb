@@ -1,0 +1,22 @@
+     <div class="row justify-content-center align-items-center my-row">
+
+            <div class="col-md-8 col-sm-12">
+
+                  <%= form_tag url_for(action: 'update'), method: "put" do %>
+
+                    <div class="form-group">
+                      <%= label_tag 'Content' %>
+                      <%= text_area_tag 'content', "#{@comment.content}", :class => "form-control", :rows => "4" %>
+                      <small id="emailHelp" class="form-text text-muted">Unlimited characters 🔥 👨‍💻 👩‍💻 🔥 !</small>
+                    </div>
+
+                    <%= submit_tag "Edit Comment", :class => "btn btn-dark btn-sm" %> 
+
+                    <%= link_to "Delete", gossip_comment_path(params[:gossip_id], params[:id]), :class => "btn btn-danger btn-sm", :data => { :confirm => "Are you sure?" }, :method => "delete" %>
+
+                  <% end %>
+
+                  
+            </div>
+
+      </div>

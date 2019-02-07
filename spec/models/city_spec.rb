@@ -2,23 +2,34 @@ require 'rails_helper'
 
 RSpec.describe City, type: :model do
 
-  before(:each) do
-    @city = City.create(name: 'Miami', zip_code: '33101')
+	before(:each) do 
+		@city = FactoryBot.create(:city)  	
   end
-    context 'validation' do
-      describe 'name' do
-        it 'should be valid without name' do
-          bad_city = City.create(zip_code: '33101')
-          expect(bad_city.errors.include?(:name)).to eq(false)
-        end
-      end
-    end
 
-    context 'public instance methods' do
-      describe 'city' do
-        it 'should return a string' do
-          expect(@city.name).to be_a(String)
-        end
-      end
+  it "has a valid factory" do
+    expect(build(:city)).to be_valid
+  end
+
+  context "validation" do
+    it "is valid with valid attributes" do
+      expect(@city).to be_a(City)
     end
+    describe "#name" do
+      it { expect(@city).to validate_presence_of(:name) }
+		end
+		describe "#zip_code" do
+      it { expect(@city).to validate_presence_of(:zip_code) }
+      it { expect(@city).to validate_uniqueness_of(:zip_code).case_insensitive }
+      it { is_expected.to allow_value("33800").for(:zip_code) }
+      it { is_expected.to allow_value("95600").for(:zip_code) }
+      it { is_expected.to_not allow_value("100000").for(:zip_code) }
+	  end
+  end
+
+  context "associations" do
+    it { expect(@city).to have_many(:users) }
+  end
+
+
+
 end

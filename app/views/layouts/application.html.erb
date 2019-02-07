@@ -14,12 +14,76 @@
   </head>
 
   <body>
-  <nav class="navbar  navbar-expand-lg navbar-dark bg-dark" style="margin-bottom: 5vh">
-     <a class="navbar-brand" href="<%=root_path%>">Home</a>
-     <a class="navbar-brand" href="<%=team_path%>">Team</a>
-     <a class="navbar-brand" href="<%=contact_path%>">Contact</a>
-     <a class="btn btn-outline-success" href="gossips/new"  role="button">Create New Potin</a>
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark" style="margin-bottom: 5vh">
+      <%= link_to "The Gossip Project", root_path, :class => "navbar-brand font-weight-bold playfair" %>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+          <li class="nav-item">
+            <%=link_to "Team", team_path, :class => "nav-item nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%=link_to "Contact", contact_path, :class => "nav-item nav-link" %>
+          </li>
+        </ul>
+        <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+          <li class="nav-item dropleft">
+                
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                User 🙂
+                </a>
+                <% if current_user %>
+
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <%=link_to "Profile", author_path(current_user.id), :class => "dropdown-item" %>
+                  <%=link_to "Log out", session_path(current_user.id), :class => "dropdown-item", :method => "delete" %>
+                  </div>
+                </div>
+                
+                <% else %>
+
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <%=link_to "Log in", new_session_path, :class => "dropdown-item" %>
+                  <%=link_to "Sign up", new_author_path, :class => "dropdown-item" %>
+                  </div>
+                </div>
+
+                <% end %>
+              </li>
+        </ul>
+      </div>
     </nav>
+
+
+    <div class="container">
+        
+    <% flash.each do |name, msg| %>
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-sm-12">
+        <div class="alert alert-<%= name %> alert-dismissible fade show" role="alert">
+          <%= msg %>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+    </div>
+    </div>
+    <% end %>
+
+      <%= yield %>
+
+    </div>
+
+    <footer class="footer">
+          <nav class="navbar navbar-light bg-light justify-content-center" style="margin-top: 10vh">
+          <span class="navbar-brand mb-0 font-weight-bold small-playfair">The Gossip Project | Made with ❤️ by MLAV</span>
+          </nav>
+    </footer>
+
+    
     <%= yield %>
 
 

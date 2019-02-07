@@ -3,3 +3,84 @@
 <p><%= @potin.content %><br> la date de creation : <%= @potin.created_at%><br><br>
 <%= link_to "la Page de l'auteur", "/gossips/show/#{@potin.id}/#{@potin.user_id}", class:"btn btn-secondary active" %></p>
 </div>
+
+
+
+
+
+
+	<div class="row justify-content-center align-items-center my-row-2">
+		<div class="col-md-8 col-sm-10">
+
+			<div class="card" style="margin-bottom: 2vh">
+		        <div class="card-body">
+		            <h3 class="card-title font-weight-bold playfair"><%= @gossip.title.capitalize %></h3>
+
+		            <div class="row">
+		            <div class="col">
+		            	<%= link_to "Author: #{User.find(@gossip.user_id).first_name}", author_path(@gossip.user_id), :class => "btn btn-dark" %>
+		            </div>
+
+		            <div class="col text-right">
+		            	
+		            		<%= link_to "City: #{User.find(@gossip.user_id).city.name}", city_path(@gossip.user.city_id), :class => "btn btn-outline-dark" %>
+		        	</div>
+		        	</div>
+
+		            <hr>
+		            <p class="card-text"><%= @gossip.content %></p>
+
+		            <% if current_user == @gossip.user %>
+
+ 					<hr>
+
+ 					<div class="row">
+			            <div class="col text-right">
+			            	<%= link_to "Edit", edit_gossip_path(params[:id]), :class => "btn btn-info btn-sm" %>
+			            	<%= link_to "Delete", gossip_path(params[:id]), :class => "btn btn-danger btn-sm", :data => { :confirm => "Are you sure?" }, :method => "delete" %>
+			        	</div>
+		        	</div>
+		        	<% end %>
+		        </div>
+		    </div>
+		 </div>
+	</div>
+
+	<div class="row justify-content-center align-items-center my-row-3">
+		<div class="col-md-8 col-sm-10">
+			
+		    <ul class="list-group">
+		    	
+		    	<% @comments.each do |comment| %>
+				  	<li class="list-group-item"> <b>
+
+				  	<%= link_to "#{User.find(comment.user_id).first_name}", author_path(comment.user_id), :class =>"text-dark" %></b> : &nbsp;<em><%=comment.content%></em> 
+
+				  	<% if current_user == comment.user %>
+
+				  		<p class="text-right"><%= link_to "Edit", edit_gossip_comment_path(params[:id], comment.id), :class => "btn btn-info btn-sm" %></p>
+
+				  	<% end %>
+
+					</li>
+				 <% end %>
+
+				 	<li class="list-unstyled">
+				 		
+				 		<%= form_tag gossip_comments_path(params[:id]), :method => :post do %>
+
+		                    <div class="form-group">
+		                   	  <br/>
+		                      <%= text_area_tag 'content', "", :class => "form-control", :placeholder => "Add your comment here !", :rows => "2" %>
+		                      <small id="emailHelp" class="form-text text-muted">Unlimited characters 🔥 👨‍💻 👩‍💻 🔥 !</small>
+		                    </div>
+
+		                    <%= submit_tag "Create Comment", :class => "btn btn-dark btn-sm" %>
+
+		                  <% end %>
+
+				 	</li>
+
+			</ul>
+		 </div>
+	</div>

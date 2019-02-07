@@ -1,26 +1,41 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  before(:each) do
-    @user = User.create(first_name: 'john', last_name: 'Doe', email: 'johndoe@mail.com', age: 42, description: 'tall')
+
+	before(:each) do 
+		@user = FactoryBot.create(:user)  	
   end
 
-  context 'validation' do
+  it "has a valid factory" do
+    # vérifie si la factory est valide
+    expect(build(:user)).to be_valid
+  end
 
-    describe 'first_name' do
-
-      it 'should be correct without first_name' do
-        good_user = User.create(last_name: 'Doe')
-        expect(good_user.errors.include?(:first_name)).to eq(false)
-      end
+  context "validation" do
+    it "is valid with valid attributes" do
+      expect(@user).to be_a(User)
     end
+    describe "#first_name" do
+      it { expect(@user).to validate_presence_of(:first_name) }
+		end
+
+		describe "#last_name" do
+      it { expect(@user).to validate_presence_of(:first_name) }
+		end
+
+		describe "#email" do
+      it { expect(@user).to validate_presence_of(:email) }
+      it { expect(@user).to validate_uniqueness_of(:email) }
+      it { is_expected.to allow_value("email@addresse.foo").for(:email) }
+      it { is_expected.to_not allow_value("foo").for(:email) }
+      it { is_expected.to_not allow_value("jean@examplecom").for(:email) }
+		end
+
   end
 
-  context 'public instance methods' do
-    describe 'user' do
-      it 'should return a string' do
-        expect(@user.first_name).to be_a(String)
-      end
-    end
+  context "associations" do
+  	it { expect(@user).to belong_to(:city) }
+    it { expect(@user).to have_many(:gossips) }
   end
+
 end

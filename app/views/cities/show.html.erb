@@ -1,0 +1,33 @@
+	<div class="row justify-content-center align-items-center">
+		<div class="col-md-12 col-sm-12">
+
+		    <div class="jumbotron p-1 p-md-2 rounded bg-light" style="margin-bottom: 2vh">
+			  <div class="container">
+			    <h3 class="display-4 playfair"><%= @city.name %></h3>
+			    <p class="lead"><%= @city.zip_code %></p>
+			    <hr>
+			    <p>Here are all the gossips from the city <%= @city.name %></p>
+			  </div>
+			</div>
+
+		 </div>
+	</div>
+
+	<% @gossips.each do |gossip| %>
+
+		<div class="card" style="margin-bottom: 2vh">
+		<div class="card-body">
+			<h4 class="card-title font-weight-bold playfair-relative"> <%= gossip.title.capitalize %> <span class="badge badge-info badgecustom"><%= Comment.where(gossip: gossip.id).count %></span></h4>
+			<div class="row">
+				<div class="col">
+					<p class="card-text"> <%= User.find(gossip.user_id).first_name %></p>
+				</div>
+
+				<div class="col text-right">
+					<%= link_to "Read more about the gossip ##{gossip.id}", gossip_path(gossip.id), :class => "btn btn-outline-dark" %>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<% end %>
