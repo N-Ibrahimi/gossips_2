@@ -1,5 +1,5 @@
 <div class="container">
-  <a class="btn btn-outline-success" href="/" role="button">Back</a>
+  <a class="btn btn-outline-primary" href="/" role="button">Back</a>
 <br>
 <br>
       <h3>Merci de rempir le formulaire et envoyer ton message</h3>
@@ -7,25 +7,25 @@
 <form>
   <div class="form">
     <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-    <label for="inputname">First name</label>
+    <label for="first_name">First name</label>
     <div class="col-sm-4">
-      <input type="text" class="First_name" placeholder="Nasim">
+      <input type="text" class="first_name" placeholder="Nasim">
     </div>
     <div class="form2">
-    <label for="inputlastn">Last name</label>
+    <label for="last_name">Last name</label>
     <div class="col-sm-4">
       <input type="text" class="last_name"placeholder="Ibrahimi">
     </div>
   </div>
   <div class="form3">
-    <label for="inputmail" >Email</label>
+    <label for="email" >Email</label>
     <div class="col-sm-4">
       <input type="text" class="email" placeholder="exemple@exemple.com">
     </div>
   </div>
   <br>
   <div class="from4">
-  <textarea  class="col-sm-6 name="message" form="message" rows="10" cols="50">Enter text here...</textarea><br><br>
+  <textarea  class="col-sm-6 name="message" form="message" rows="10" cols="50" placeholder="Enter your message"></textarea><br><br>
    </div>
   <div class="form-group row">
     <div class="col-sm-2">

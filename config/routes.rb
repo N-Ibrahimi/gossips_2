@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  get 'potin/new', to: 'potin#new'
+  post'create', to: 'potin#create'
   get '/gossip/:gossip_id/:user_id' ,to: 'author#display'
   get '/gossip/:gossip_id', to: 'gossip#show'
   root 'index#home'

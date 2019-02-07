@@ -38,3 +38,7 @@ h2 {
   font-weight: bolder;
   text-shadow: 1px 2px 4px rgb(190, 64, 14)
 }
+
+nav {
+  align-content: stretch;
+}
